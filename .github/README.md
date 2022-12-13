@@ -1,5 +1,5 @@
 <div align="center" id="top"> 
-  <img src="./logo.jpg" alt="monki" />
+  <img src="./logo.jpg" alt="monki" size=50% />
 
   &#xa0;
 
