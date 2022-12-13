@@ -5,7 +5,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Feather from 'react-native-vector-icons/FontAwesome';
 import { useFonts } from 'expo-font';
 import Glass from './micro-components/glass'
-import ADD from  './Add_wather'
 import SET from  './settings_wather'
 
 const W = Dimensions.get('window').width;
@@ -29,16 +28,15 @@ const Wather = () => {
         setwatherlimit(amm);
     }
     //modals
-    //wather add
 
-    const [ADD_WATHER_MENU_VISIBLE,addvisible] = useState(false);
+    const [ADD_WATHER_MENU_VISIBLE, addvisible] = useState(false);
    
     const SetAddVisible = (bool) =>{
         addvisible(bool)
     }
     //settings
 
-    const [SET_WATHER_MENU_VISIBLE,setvisible] = useState(false);
+    const [SET_WATHER_MENU_VISIBLE, setvisible] = useState(false);
     const SetSetVisible = (bool) =>{
         setvisible(bool)
     }
@@ -47,22 +45,10 @@ const Wather = () => {
     return (
         <View style={styles.container}>
             
-            
             <SafeAreaView style={styles.container}>
                 {/* Popup windows */}
                 {/*wather glass */}
-                <Modal 
-                        transparent={true}
-                        animationType="fade"
-                        visible={ADD_WATHER_MENU_VISIBLE}
-                        onRequestClose={() => SetAddVisible(false)}
-                        
-                    >
-                        <ADD
-                            vis={SetAddVisible}
-                            data={set_WATHER_PER_GLASS}
-                        />
-                </Modal>
+                
                 {/*settings */}
                 <Modal 
                         transparent={true}
@@ -116,13 +102,9 @@ const Wather = () => {
                         <Text style={styles.addtxt}>+</Text>
                         
                     </TouchableOpacity>
-                    
-                    
-                    
-                   
                 </View>
+
                 <Text style={styles.percentage_text}>100%</Text>
-                
                 
             </SafeAreaView>      
         </View>
