@@ -32,27 +32,32 @@ const ADD = (props) => {
                  {/* backbutton */}
                  <View style={styles.header}>
                     <BACK Close={Close}/>
-                 </View>
+                </View>
+
                 <View style={styles.content}>
-                    <Text style={styles.title}>Dodaj Wypite</Text>
+                    <Text style={styles.title}>
+                        Dodaj Wypite
+                    </Text>
                     
                     <View style={styles.glass_big}>
                         <Image style={styles.glass_img}
                             source={require('../assets/szklanka4.png')}
                         />
-                    <TouchableOpacity onPress={decreaseGlassSize}>
-                        <View style={styles.plus_minus_button}>
-                            <Text style={styles.inner_text}> - </Text>
-                        </View>
-                    </TouchableOpacity>
+                        <TouchableOpacity>
+                            <View style={styles.plus_minus_button}>
+                                <Text style={styles.inner_text}> - </Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
                 
                 </View>
                 
             </View>
            
 
-    </TouchableOpacity>
-)}
+        </TouchableOpacity>
+    )
+}
 
 const styles = StyleSheet.create({
     glass_big:{
