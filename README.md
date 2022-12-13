@@ -75,7 +75,6 @@ $ git clone https://github.com/Jejis06/jungle_app
 $ cd jungle_app
 
 # Install dependencies and Initialize project
-
 $ npm install
 $ expo install
 
