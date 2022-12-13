@@ -20,8 +20,6 @@ const styles = StyleSheet.create({
         height:'100%',
         backgroundColor: '#24A',
         borderRadius: 34,
-        
-        
     }
 })
 
