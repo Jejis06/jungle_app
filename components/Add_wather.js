@@ -1,8 +1,13 @@
 import React, { Component } from "react";
+import colors from '../assets/colors/colors';
 import BACK from "./micro-components/back"
 import {
-    StyleSheet,Text,View,
-    TouchableOpacity, Dimensions
+    StyleSheet,
+    Text,
+    View,
+    TouchableOpacity,
+    Dimensions,
+    Image
 } from "react-native";
 
 const W_MOD = Dimensions.get('window').width;
@@ -22,10 +27,7 @@ const ADD = (props) => {
     }
 
     return (
-        <TouchableOpacity
-            disabled={true}
-            style={styles.container}
-        >
+        <TouchableOpacity disabled={true} style={styles.container}>
             <View style={styles.modal}>
                  {/* backbutton */}
                  <View style={styles.header}>
@@ -35,15 +37,13 @@ const ADD = (props) => {
                     <Text style={styles.title}>Dodaj Wypite</Text>
                     
                     <View style={styles.glass_big}>
-                        <Text>250ml</Text>
-                    </View>
-                    
-                    <View style={styles.buttons}>
-
-                    
-                    </View>
-                    <TouchableOpacity style={styles.add}>
-
+                        <Image style={styles.glass_img}
+                            source={require('../assets/szklanka4.png')}
+                        />
+                    <TouchableOpacity onPress={decreaseGlassSize}>
+                        <View style={styles.plus_minus_button}>
+                            <Text style={styles.inner_text}> - </Text>
+                        </View>
                     </TouchableOpacity>
                 
                 </View>
@@ -52,19 +52,26 @@ const ADD = (props) => {
            
 
     </TouchableOpacity>
-    )
-    
-
-}
+)}
 
 const styles = StyleSheet.create({
     glass_big:{
         marginTop:55,
         marginBottom:29,
-        backgroundColor: '#24A',
+        // backgroundColor: '#24A',
+        
+        alignItems: 'center',
+        justifyContent: 'center',
+
         width:"28%",
         height:"32%",
     },
+
+    glass_img:{
+        height: "110%",
+        width: "110%"
+    }, 
+
     title:{
         color: 'black',
         letterSpacing:5,
@@ -98,7 +105,23 @@ const styles = StyleSheet.create({
         paddingTop:14,
         paddingHorizontal:22,       
        
-    }
+    },
+
+    plus_minus_button:{
+        //height:"10%",
+        // width:"10%",
+
+        // flexDirection: 'column',
+        // flex: 0.1,
+
+        // justifyContent: 'center',
+        // alignContent: 'center',
+
+        backgroundColor: colors.Primary,
+
+        padding: "3%",
+        borderRadius: 100,
+    },
     
 })
 export default ADD;
