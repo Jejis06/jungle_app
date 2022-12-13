@@ -8,28 +8,46 @@ import Glass from './micro-components/glass'
 import SET from  './settings_wather'
 
 const W = Dimensions.get('window').width;
+const H = Dimensions.get('window').height;
+const GLASS_AMM = 5;
 
 const Wather = () => {
+    const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
     
     
-    //const [AMM, set] = useState();
+    const [DRUNK, adddrunk] = useState(0); // ile wypil uzytkowinik
+    const [COMPLETE, setcomplete] = useState(0); // ile procent celu osiągnął uzytkownik
+    
+    
+
+
     const [WATHER_LIMIT,setwatherlimit] = useState(2000);
-    const [WATHER_PER_GLASS,setwatherpergl] = useState(250);
-
-
-    const set_WATHER_PER_GLASS = (amm) => {
-        console.log(amm);
-        setwatherpergl(amm);
-    }
     const set_WATHER_LIMIT = (amm) => {
         setwatherlimit(amm);
     }
+
+
+    const [WATHER_PER_GLASS,setwatherpergl] = useState(250);
+     const set_WATHER_PER_GLASS = (amm) => {
+        console.log(amm);
+        setwatherpergl(amm);
+    }
+
+    
+    const [GLASS_ARR,ARR] = useState(Array(GLASS_AMM).fill('0%')); // ile szklanek
+    const add_to_arr = () => {
+        for(let i=0;i< GLASS_ARR.length;i++){
+            console.log(parseInt(GLASS_ARR[i].split('%')[0]));
+        }
+    }
+    
     //modals
 
     const [ADD_WATHER_MENU_VISIBLE, addvisible] = useState(false);
    
     const SetAddVisible = (bool) =>{
         addvisible(bool)
+        
     }
     //settings
 
@@ -37,10 +55,26 @@ const Wather = () => {
     const SetSetVisible = (bool) =>{
         setvisible(bool)
     }
-    Feather.loadFont();
 
+    //rest
+    const add_one_glass = () => {
+        
+        adddrunk( DRUNK + WATHER_PER_GLASS);
+        
+        //adddrunk(0);
+        percentage(WATHER_PER_GLASS);
+        add_to_arr();
+    };
+    //calculate percentage
+    const percentage = (amm) => {
+        setcomplete(clamp(parseInt((DRUNK + amm)/WATHER_LIMIT * 100),0,100));  
+        
+              
+    }
+   
+    Feather.loadFont();
     return (
-        <View style={styles.container}>
+        <View style={styles.container} onLoad={() => create_glases()}>
             
             <SafeAreaView style={styles.container}>
                 {/* Popup windows */}
@@ -80,14 +114,14 @@ const Wather = () => {
                 {/* info */}
 
                 <View style={styles.ammount_container}>
-                    <Text style={styles.ammount_text}>300 ml</Text>
+                    <Text style={styles.ammount_text}>{DRUNK} ml</Text>
                     <View style={styles.glasses}>
-                        <Glass level='80%'/>
-                        <Glass/>
-                        <Glass/>  
-                        <Glass/>  
-                        <Glass/>                      
-    
+                        {
+                            GLASS_ARR.map((item,index) => {
+                                return <Glass key={index} level={item}/>
+                            })
+                        }
+        
                     </View>
                 </View>
 
@@ -96,18 +130,18 @@ const Wather = () => {
                 
 
                 <View style={styles.level_wrapper}>
-                    <View style={styles.wather_level}></View>
-
+                    <View style={[styles.wather_level,{height: `${COMPLETE-10}%`}]}></View>
+                    
                     <TouchableOpacity  
                         style={styles.addWathersphere}
-                        onPress={() => SetAddVisible(true)}
+                        onPress={() => add_one_glass()}
                     >
                         <Text style={styles.addtxt}>+</Text>
                         
                     </TouchableOpacity>
                 </View>
 
-                <Text style={styles.percentage_text}>100%</Text>
+                <Text style={styles.percentage_text}>{COMPLETE}%</Text>
                 
             </SafeAreaView>      
         </View>
@@ -170,7 +204,6 @@ const styles = StyleSheet.create({
         position:'absolute',
         backgroundColor:colors.Thirdary,
         width:'100%',
-        height:'90%',
         bottom:0,
     },
     addWathersphere:{
