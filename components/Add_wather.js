@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component,useState } from "react";
 import BACK from "./micro-components/back"
 import {
     StyleSheet,Text,View,
@@ -9,17 +9,26 @@ const W_MOD = Dimensions.get('window').width;
 const H_MOD = Dimensions.get('window').height;
 
 const ADD = (props) => {
-    const fetchFonts = async () =>
-    await Font.loadAsync({
-        'Hbold': require('../assets/fonts/Heebo-Bold.ttf'),
-        'Hreg': require('../assets/fonts/Heebo-Regular.ttf'),
-    });
+    
+    const [glass_amm,set_amm] = useState(250);
 
     const Close = (bool, data) => {
         props.vis(bool);
         props.data(data);
         
     }
+    const add_wather = (amm) => {
+        //set_amm(500);
+        if((glass_amm + amm) < 0){
+            set_amm(0);
+        }
+        else{
+            set_amm(glass_amm + amm);
+
+        }
+        
+
+    };
 
     return (
         <TouchableOpacity
@@ -35,16 +44,17 @@ const ADD = (props) => {
                     <Text style={styles.title}>Dodaj Wypite</Text>
                     
                     <View style={styles.glass_big}>
-                        <Text>250ml</Text>
+                        <Text>{glass_amm}ml</Text>
                     </View>
                     
                     <View style={styles.buttons}>
-
+                        {/*     -        */}
+                        <TouchableOpacity onPress={() => add_wather(-50)} style={styles.button}><Text style={styles.button_text}>-</Text></TouchableOpacity>
+                        {/*     +        */}
+                        <TouchableOpacity onPress={() => add_wather(50)} style={styles.button}><Text style={styles.button_text}>+</Text></TouchableOpacity>
                     
                     </View>
-                    <TouchableOpacity style={styles.add}>
-
-                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => Close(false,glass_amm)} style={styles.add_button}><Text style={styles.button_text}>Dodaj</Text></TouchableOpacity>
                 
                 </View>
                 
@@ -58,13 +68,53 @@ const ADD = (props) => {
 }
 
 const styles = StyleSheet.create({
+    /*      working button that applies stuff       */
+    add_button:{
+        width: "60%",
+        height: W_MOD/6,
+        backgroundColor: '#24A',
+        marginTop:50,
+        marginBottom: 54,
+        borderRadius: 42,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    /*     + - buttons styling        */
+    button_text:{
+        fontSize: 24,
+        fontFamily: "Hreg",
+
+    },
+    button:{
+        backgroundColor: '#24A',
+        borderRadius: 90,
+        width: W_MOD/6,
+        height: W_MOD/6,
+        
+        marginHorizontal:9,
+        alignItems: 'center',
+        justifyContent: 'center'
+
+    },
+    buttons:{
+        flexDirection:"row",
+        justifyContent: 'space-between',
+        
+        
+    },
+
+    /*     Glass        */
     glass_big:{
         marginTop:55,
         marginBottom:29,
         backgroundColor: '#24A',
         width:"28%",
         height:"32%",
+
+        alignItems: 'center',
+        justifyContent: 'center'
     },
+     /*     title        */
     title:{
         color: 'black',
         letterSpacing:5,
@@ -72,25 +122,19 @@ const styles = StyleSheet.create({
         textAlign:'center',
         fontWeight:'bold',
         fontFamily: "Hbold",
+        
     },
+
+     /*     container of title Glass and +- buttons        */
     content:{
         flexDirection: 'column',
         flex: 1,
         alignItems: 'center',
         
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
     },
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    modal: {
-        height:"85%",
-        width: "90%",
-        backgroundColor: '#FFFF',
-        borderRadius: 44,
-    },
+    
+     /*     header with back button        */
     header:{
         height:"9%",
         flexDirection: 'row-reverse',
@@ -98,7 +142,22 @@ const styles = StyleSheet.create({
         paddingTop:14,
         paddingHorizontal:22,       
        
-    }
+    },
+
+     /*     wrapper         */
+    modal: {
+        height:"85%",
+        width: "90%",
+        backgroundColor: '#FFFF',
+        borderRadius: 44,
+    },
+
+     /*     container of all elements */       
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     
 })
 export default ADD;

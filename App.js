@@ -3,8 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-import { useFonts } from 'expo-font';
+import useFonts from "./components/UseFonts";
 
 import Wather from './components/Wather_main';
 
@@ -12,13 +11,10 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
    //fonts
-   
-  const fetchFonts = async () =>
-    await Font.loadAsync({
-      'Hbold': require('./assets/fonts/Heebo-Bold.ttf'),
-      'Hreg': require('./assets/fonts/Heebo-Regular.ttf'),
-  });
-  
+     
+   const LoadFonts = async () => {
+    await useFonts();
+  };
 
   return (
     <NavigationContainer>
