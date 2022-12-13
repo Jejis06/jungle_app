@@ -74,8 +74,8 @@ $ git clone https://github.com/Jejis06/jungle_app
 # Access
 $ cd woda
 
-# Install dependencies
-$ yarn
+# Install dependencies and Initialize project
+$ expo install
 
 # Run the project
 $ npx expo start
