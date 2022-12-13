@@ -14,18 +14,27 @@ const W_MOD = Dimensions.get('window').width - 80;
 const H_MOD = 150;
 
 const SET = (props) => {
-    const Close = (bool, data) => {
+    const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
+
+    const Close = (bool) => {
         props.vis(bool);
-        props.data(data);
+    }
+    
+
+    const[glassSize, setGlassSize] = useState(props.wather_per_glass);
+    const modifyGlassSize = (amm) =>{
+        setGlassSize(clamp((glassSize + amm), 50,500));
+        props.set_wather_per_glass(clamp((glassSize + amm), 50,500));
     }
 
-    const[glassSize, setGlassSize] = useState(250);
-    const increaseGlassSize = () => setGlassSize(prevglassSize => prevglassSize + 50);
-    const decreaseGlassSize = () => setGlassSize(prevglassSize => prevglassSize - 50);
+    const[goal, setGoal] = useState(props.wather_goal);
 
-    const[goal, setGoal] = useState(2000);
-    const increaseGoal = () => setGoal(prevgoal => prevgoal + 50);
-    const decreaseGoal = () => setGoal(prevgoal => prevgoal - 50);
+    const modifyGoal = (amm) =>{
+        setGoal(clamp(goal + amm, 50,3000));        
+        props.set_goal(clamp(goal + amm, 50,3000));
+    }
+
+    
 
     return (
         <TouchableOpacity disabled={true} style={styles.container}>
@@ -41,13 +50,13 @@ const SET = (props) => {
                         <Text style={[styles.title, styles.milliliters]}>{glassSize} ml</Text>
                         <View style={styles.buttons}>
 
-                            <TouchableOpacity onPress={increaseGlassSize}>
+                            <TouchableOpacity onPress={() => modifyGlassSize(50)}>
                                 <View style={styles.plus_minus_button}>
                                     <Text style={styles.inner_text}> + </Text>
                                 </View>
                             </TouchableOpacity>
                             
-                            <TouchableOpacity onPress={decreaseGlassSize}>
+                            <TouchableOpacity onPress={() => modifyGlassSize(-50)}>
                                 <View style={styles.plus_minus_button}>
                                     <Text style={styles.inner_text}> - </Text>
                                 </View>
@@ -61,13 +70,13 @@ const SET = (props) => {
                         <Text style={[styles.title, styles.milliliters]}>{goal} ml</Text>
                         <View style={styles.buttons}>
 
-                            <TouchableOpacity onPress={increaseGoal}>
+                            <TouchableOpacity onPress={() => modifyGoal(50)}>
                                 <View style={styles.plus_minus_button}>
                                     <Text style={styles.inner_text}> + </Text>
                                 </View>
                             </TouchableOpacity>
                             
-                            <TouchableOpacity onPress={decreaseGoal}>
+                            <TouchableOpacity onPress={() => modifyGoal(-50)}>
                                 <View style={styles.plus_minus_button}>
                                     <Text style={styles.inner_text}> - </Text>
                                 </View>

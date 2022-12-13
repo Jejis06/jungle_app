@@ -5,10 +5,11 @@ import {
 } from "react-native";
 
 
+
 const back = (props) => {
     return (
         <TouchableOpacity
-            onPress={() => props.Close(false,"")}
+            onPress={() => props.Close(false)}
             style={styles.back}>
         </TouchableOpacity>
     )

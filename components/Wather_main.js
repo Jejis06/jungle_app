@@ -12,12 +12,13 @@ const W = Dimensions.get('window').width;
 const Wather = () => {
     
     
-    const [AMM, set] = useState();
-    const [WATHER_LIMIT,setwatherlimit] = useState();
-    const [WATHER_PER_GLASS,setwatherpergl] = useState();
+    //const [AMM, set] = useState();
+    const [WATHER_LIMIT,setwatherlimit] = useState(2000);
+    const [WATHER_PER_GLASS,setwatherpergl] = useState(250);
 
 
     const set_WATHER_PER_GLASS = (amm) => {
+        console.log(amm);
         setwatherpergl(amm);
     }
     const set_WATHER_LIMIT = (amm) => {
@@ -36,8 +37,8 @@ const Wather = () => {
     const SetSetVisible = (bool) =>{
         setvisible(bool)
     }
-
     Feather.loadFont();
+
     return (
         <View style={styles.container}>
             
@@ -53,8 +54,14 @@ const Wather = () => {
                         onRequestClose={() => SetSetVisible(false)}
                     >
                         <SET
-                            vis={SetSetVisible}
-                            data={set_WATHER_LIMIT}
+                            vis={SetSetVisible} // visible checkbox
+                            
+
+                            set_wather_per_glass = {set_WATHER_PER_GLASS}
+                            set_goal = {set_WATHER_LIMIT}
+
+                            wather_per_glass = {WATHER_PER_GLASS}
+                            wather_goal = {WATHER_LIMIT}
                         />
                 </Modal>
                 
