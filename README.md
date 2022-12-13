@@ -50,7 +50,7 @@ Aplikacja projektu jungle ze "zwolnieni z teorii"
 
 ## :sparkles: Features ##
 
-:heavy_check_mark: Feature 1 : Miernik wody;\
+:heavy_check_mark: Feature 1 : Miernik wody <- na razie nie za duzo
 
 ## :rocket: Technologies ##
 
@@ -70,7 +70,7 @@ Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) an
 
 ```bash
 # Clone this project
-$ git clone https://github.com/{{YOUR_GITHUB_USERNAME}}/woda
+$ git clone https://github.com/Jejis06/jungle_app
 
 # Access
 $ cd woda
@@ -89,7 +89,7 @@ $ yarn start
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
 
 
-Made with :heart: by <a href="https://github.com/{{YOUR_GITHUB_USERNAME}}" target="_blank">{{Jejis06 and FuzzyDuck}}</a>
+Made with :heart: by <a href="https://github.com/Jejis06" target="_blank">{{Jejis06}}</a> and <a href="https://github.com/fuzzyduck10394" target="_blank">{{fuzzyduck10394}}</a>
 
 &#xa0;
 
