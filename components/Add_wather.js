@@ -1,33 +1,40 @@
-import React, { Component } from "react";
-import colors from '../assets/colors/colors';
+import React, { Component,useState } from "react";
 import BACK from "./micro-components/back"
 import {
-    StyleSheet,
-    Text,
-    View,
-    TouchableOpacity,
-    Dimensions,
-    Image
+    StyleSheet,Text,View,
+    TouchableOpacity, Dimensions
 } from "react-native";
 
 const W_MOD = Dimensions.get('window').width;
 const H_MOD = Dimensions.get('window').height;
 
 const ADD = (props) => {
-    const fetchFonts = async () =>
-    await Font.loadAsync({
-        'Hbold': require('../assets/fonts/Heebo-Bold.ttf'),
-        'Hreg': require('../assets/fonts/Heebo-Regular.ttf'),
-    });
+    
+    const [glass_amm,set_amm] = useState(250);
 
     const Close = (bool, data) => {
         props.vis(bool);
         props.data(data);
         
     }
+    const add_wather = (amm) => {
+        //set_amm(500);
+        if((glass_amm + amm) < 0){
+            set_amm(0);
+        }
+        else{
+            set_amm(glass_amm + amm);
+
+        }
+        
+
+    };
 
     return (
-        <TouchableOpacity disabled={true} style={styles.container}>
+        <TouchableOpacity
+            disabled={true}
+            style={styles.container}
+        >
             <View style={styles.modal}>
                  {/* backbutton */}
                  <View style={styles.header}>
@@ -37,14 +44,17 @@ const ADD = (props) => {
                     <Text style={styles.title}>Dodaj Wypite</Text>
                     
                     <View style={styles.glass_big}>
-                        <Image style={styles.glass_img}
-                            source={require('../assets/szklanka4.png')}
-                        />
-                    <TouchableOpacity onPress={decreaseGlassSize}>
-                        <View style={styles.plus_minus_button}>
-                            <Text style={styles.inner_text}> - </Text>
-                        </View>
-                    </TouchableOpacity>
+                        <Text>{glass_amm}ml</Text>
+                    </View>
+                    
+                    <View style={styles.buttons}>
+                        {/*     -        */}
+                        <TouchableOpacity onPress={() => add_wather(-50)} style={styles.button}><Text style={styles.button_text}>-</Text></TouchableOpacity>
+                        {/*     +        */}
+                        <TouchableOpacity onPress={() => add_wather(50)} style={styles.button}><Text style={styles.button_text}>+</Text></TouchableOpacity>
+                    
+                    </View>
+                    <TouchableOpacity onPress={() => Close(false,glass_amm)} style={styles.add_button}><Text style={styles.button_text}>Dodaj</Text></TouchableOpacity>
                 
                 </View>
                 
@@ -52,26 +62,59 @@ const ADD = (props) => {
            
 
     </TouchableOpacity>
-)}
+    )
+    
+
+}
 
 const styles = StyleSheet.create({
+    /*      working button that applies stuff       */
+    add_button:{
+        width: "60%",
+        height: W_MOD/6,
+        backgroundColor: '#24A',
+        marginTop:50,
+        marginBottom: 54,
+        borderRadius: 42,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    /*     + - buttons styling        */
+    button_text:{
+        fontSize: 24,
+        fontFamily: "Hreg",
+
+    },
+    button:{
+        backgroundColor: '#24A',
+        borderRadius: 90,
+        width: W_MOD/6,
+        height: W_MOD/6,
+        
+        marginHorizontal:9,
+        alignItems: 'center',
+        justifyContent: 'center'
+
+    },
+    buttons:{
+        flexDirection:"row",
+        justifyContent: 'space-between',
+        
+        
+    },
+
+    /*     Glass        */
     glass_big:{
         marginTop:55,
         marginBottom:29,
-        // backgroundColor: '#24A',
-        
-        alignItems: 'center',
-        justifyContent: 'center',
-
+        backgroundColor: '#24A',
         width:"28%",
         height:"32%",
+
+        alignItems: 'center',
+        justifyContent: 'center'
     },
-
-    glass_img:{
-        height: "110%",
-        width: "110%"
-    }, 
-
+     /*     title        */
     title:{
         color: 'black',
         letterSpacing:5,
@@ -79,25 +122,19 @@ const styles = StyleSheet.create({
         textAlign:'center',
         fontWeight:'bold',
         fontFamily: "Hbold",
+        
     },
+
+     /*     container of title Glass and +- buttons        */
     content:{
         flexDirection: 'column',
         flex: 1,
         alignItems: 'center',
         
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
     },
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    modal: {
-        height:"85%",
-        width: "90%",
-        backgroundColor: '#FFFF',
-        borderRadius: 44,
-    },
+    
+     /*     header with back button        */
     header:{
         height:"9%",
         flexDirection: 'row-reverse',
@@ -107,20 +144,19 @@ const styles = StyleSheet.create({
        
     },
 
-    plus_minus_button:{
-        //height:"10%",
-        // width:"10%",
+     /*     wrapper         */
+    modal: {
+        height:"85%",
+        width: "90%",
+        backgroundColor: '#FFFF',
+        borderRadius: 44,
+    },
 
-        // flexDirection: 'column',
-        // flex: 0.1,
-
-        // justifyContent: 'center',
-        // alignContent: 'center',
-
-        backgroundColor: colors.Primary,
-
-        padding: "3%",
-        borderRadius: 100,
+     /*     container of all elements */       
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     
 })
