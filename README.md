@@ -72,15 +72,16 @@ Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) an
 $ git clone https://github.com/Jejis06/jungle_app
 
 # Access
-$ cd woda
+$ cd jungle_app
 
 # Install dependencies and Initialize project
+
+$ npm install
 $ expo install
 
 # Run the project
 $ npx expo start
 
-# The server will initialize in the <http://localhost:3000>
 ```
 
 ## :memo: License ##
