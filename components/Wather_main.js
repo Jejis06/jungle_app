@@ -55,7 +55,8 @@ const Wather = () => {
                         transparent={true}
                         animationType="fade"
                         visible={ADD_WATHER_MENU_VISIBLE}
-                        nRequestClose={() => SetAddVisible(false)}
+                        onRequestClose={() => SetAddVisible(false)}
+                        
                     >
                         <ADD
                             vis={SetAddVisible}
@@ -67,7 +68,7 @@ const Wather = () => {
                         transparent={true}
                         animationType="fade"
                         visible={SET_WATHER_MENU_VISIBLE}
-                        nRequestClose={() => SetSetVisible(false)}
+                        onRequestClose={() => SetSetVisible(false)}
                     >
                         <SET
                             vis={SetSetVisible}
