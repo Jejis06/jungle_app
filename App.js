@@ -34,6 +34,7 @@ export default function App() {
     </NavigationContainer>
   );
 }
+//siemanko
 
 const styles = StyleSheet.create({
   
