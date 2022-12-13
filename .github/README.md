@@ -1,9 +1,8 @@
 <div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="Woda" />
+  <img src="./logo.jpg" alt="monki" />
 
   &#xa0;
 
-  <!-- <a href="https://woda.netlify.app">Demo</a> -->
 </div>
 
 <h1 align="center">Jungle App</h1>
@@ -17,20 +16,15 @@
 
   <img alt="License" src="https://img.shields.io/github/license/Jejis06/jungle_app?color=56BEB8">
 
-  <!-- <img alt="Github issues" src="https://img.shields.io/github/issues/{{YOUR_GITHUB_USERNAME}}/woda?color=56BEB8" /> -->
-
-  <!-- <img alt="Github forks" src="https://img.shields.io/github/forks/{{YOUR_GITHUB_USERNAME}}/woda?color=56BEB8" /> -->
-
-  <!-- <img alt="Github stars" src="https://img.shields.io/github/stars/{{YOUR_GITHUB_USERNAME}}/woda?color=56BEB8" /> -->
 </p>
 
 <!-- Status -->
 
-<!-- <h4 align="center"> 
-	🚧  Woda 🚀 Under construction...  🚧
+<h4 align="center"> 
+	🚧  Under construction...  🚧
 </h4> 
 
-<hr> -->
+<hr> 
 
 <p align="center">
   <a href="#dart-about">About</a> &#xa0; | &#xa0; 
