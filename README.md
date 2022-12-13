@@ -6,7 +6,7 @@
   <!-- <a href="https://woda.netlify.app">Demo</a> -->
 </div>
 
-<h1 align="center">Woda</h1>
+<h1 align="center">Jungle App</h1>
 
 <p align="center">
   <img alt="Github top language" src="https://img.shields.io/github/languages/top/{{YOUR_GITHUB_USERNAME}}/woda?color=56BEB8">
@@ -46,13 +46,11 @@
 
 ## :dart: About ##
 
-Describe your project
+Aplikacja projektu jungle ze "zwolnieni z teorii"
 
 ## :sparkles: Features ##
 
-:heavy_check_mark: Feature 1;\
-:heavy_check_mark: Feature 2;\
-:heavy_check_mark: Feature 3;
+:heavy_check_mark: Feature 1 : Miernik wody;\
 
 ## :rocket: Technologies ##
 
@@ -91,7 +89,7 @@ $ yarn start
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
 
 
-Made with :heart: by <a href="https://github.com/{{YOUR_GITHUB_USERNAME}}" target="_blank">{{YOUR_NAME}}</a>
+Made with :heart: by <a href="https://github.com/{{YOUR_GITHUB_USERNAME}}" target="_blank">{{Jejis06 and FuzzyDuck}}</a>
 
 &#xa0;
 
