@@ -1,4 +1,4 @@
-import { StyleSheet, Text, Touchable, TouchableOpacity, View, Modal ,Pressable, Dimensions, Header} from 'react-native';
+import { StyleSheet, Text, Touchable, TouchableOpacity, View, Modal ,Pressable,Dimensions} from 'react-native';
 import React,{useState} from 'react';
 import colors from '../assets/colors/colors';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -6,22 +6,10 @@ import Feather from 'react-native-vector-icons/FontAwesome';
 import { useFonts } from 'expo-font';
 import Glass from './micro-components/glass'
 import SET from  './settings_wather'
-import Svg, { Circle, Path } from "react-native-svg";
-import Animated, {
-    Easing,
-    interpolate,
-    useAnimatedProps,
-    useSharedValue,
-    withRepeat,
-    withTiming,
-  } from "react-native-reanimated";
 
 const W = Dimensions.get('window').width;
 const H = Dimensions.get('window').height;
 const GLASS_AMM = 5;
-
-
-
 
 const Wather = () => {
     const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
@@ -80,90 +68,15 @@ const Wather = () => {
     //calculate percentage
     const percentage = (amm) => {
         setcomplete(clamp(parseInt((DRUNK + amm)/WATHER_LIMIT * 100),0,100));  
+        
+              
     }
-
-
-
-
-    const { width } = Dimensions.get("screen");
-    const AnimatedCircle = Animated.createAnimatedComponent(Circle);
-    const AnimatedPath = Animated.createAnimatedComponent(Path);
-    const AnimatedSvg = Animated.createAnimatedComponent(Svg);
-
-    const heighAnimated = useSharedValue(100);
-    const waveAnimated = useSharedValue(5);
-    const buttonStrokeAnimated = useSharedValue(0);
-
-    const [percentag, setPercentage] = useState(0)
-
-
-    /*................................*/
-
-    const firstWaveProps = useAnimatedProps(() => {
-        return {
-          d: `
-            M 0 0
-            Q 35 ${waveAnimated.value} 70 0
-            T 140 0
-            T 210 0
-            T 280 0
-            T 350 0
-            T 420 0
-            V ${heighAnimated.value}
-            H 0
-            Z
-        `,
-        };
-      });
-    
-      const secondWaveProps = useAnimatedProps(() => {
-        return {
-          d: `
-            M 0 0
-            Q 45 ${waveAnimated.value + 5} 90 0
-            T 180 0
-            T 270 0
-            T 360 0
-            T 900 0
-            T 540 0
-            V ${heighAnimated.value}
-            H 0
-            Z
-        `,
-        };
-      });
-    
-      const SVGProps = useAnimatedProps(() => {
-        return {
-          height: heighAnimated.value,
-          viewBox: `0 0 ${width} ${heighAnimated.value}`,
-        };
-      });
-    
-      function handleDrink() {
-        buttonStrokeAnimated.value = 0;
-        waveAnimated.value = 5;
-    
-        buttonStrokeAnimated.value = withTiming(1, {
-          duration: 500,
-          easing: Easing.ease,
-        });
-        waveAnimated.value = withRepeat(
-          withTiming(17, {
-            duration: 500,
-            easing: Easing.ease,
-          }),
-          2,
-          true
-      )};
-    
-   /*................................*/
+   
     Feather.loadFont();
     return (
-        <View style={styles.container} onLoad={() => create_glases()}>            
-
+        <View style={styles.container} onLoad={() => create_glases()}>
             
-            {/*<SafeAreaView style={styles.container}>*/}
+            <SafeAreaView style={styles.container}>
                 {/* Popup windows */}
                 {/*wather glass */}
                 
@@ -185,8 +98,6 @@ const Wather = () => {
                             wather_goal = {WATHER_LIMIT}
                         />
                 </Modal>
-
-                
                 
 
 
@@ -219,39 +130,20 @@ const Wather = () => {
                 
 
                 <View style={styles.level_wrapper}>
-                    <View ></View>
+                    <View style={[styles.wather_level,{height: `${COMPLETE-10}%`}]}></View>
                     
                     <TouchableOpacity  
                         style={styles.addWathersphere}
                         onPress={() => add_one_glass()}
                     >
-                        <Text style={styles.addtxt} onPress={handleDrink}>+</Text>
+                        <Text style={styles.addtxt}>+</Text>
                         
                     </TouchableOpacity>
                 </View>
 
                 <Text style={styles.percentage_text}>{COMPLETE}%</Text>
-
                 
-
-                <AnimatedSvg width={width} animatedProps={SVGProps}>
-                    {/*<AnimatedPath
-                        animatedProps={firstWaveProps}
-                        fill={'red'}
-                        transform="translate(0,10)"
-                    />*/}
-
-                    <AnimatedPath
-                        animatedProps={secondWaveProps}
-                        fill={'green'}
-                        transform="translate(0,15)"
-                        style={[styles.wather_level,{height: `${COMPLETE-10}%`}]}
-                    />
-                </AnimatedSvg>
-                
-
-
-            {/*</SafeAreaView>*/}      
+            </SafeAreaView>      
         </View>
     )
 };
