@@ -10,7 +10,7 @@ import {readData,writeData,database , templates ,initDATABASE} from './database_
 
 const W = Dimensions.get('window').width;
 const H = Dimensions.get('window').height;
-const GLASS_AMM = 5;
+
 
 
 
@@ -20,10 +20,11 @@ const Wather = () => {
       
 
     const [DRUNK, adddrunk] = useState(0); // ile wypil uzytkowinik
-    const [COMPLETE, setcomplete] = useState(0); // ile procent celu osiągnął uzytkownik
-    
-    
+    const [COMPLETE, setcomplete] = useState(0); // ile procent celu osiągnął uzytkownik  
 
+
+
+    const [GLASS_AMM, setGlassAmm] = useState(5);
 
     const [WATHER_LIMIT,setwatherlimit] = useState(2000);
     const set_WATHER_LIMIT = (amm) => {
@@ -49,16 +50,12 @@ const Wather = () => {
 
     const [ADD_WATHER_MENU_VISIBLE, addvisible] = useState(false);
    
-    const SetAddVisible = (bool) =>{
-        addvisible(bool)
-        
-    }
-    //settings
+    const SetAddVisible = (bool) => {addvisible(bool)}
 
+    //settings
     const [SET_WATHER_MENU_VISIBLE, setvisible] = useState(false);
-    const SetSetVisible = (bool) =>{
-        setvisible(bool);
-    }
+
+    const SetSetVisible = (bool) =>{setvisible(bool)}
 
     //rest
     const add_one_glass = () => {
@@ -71,12 +68,14 @@ const Wather = () => {
         console.log(readData(database.glass));
     };
     //calculate percentage
-    const percentage = (amm) => {
-        setcomplete(clamp(parseInt((DRUNK + amm)/WATHER_LIMIT * 100),0,100));  
-        
-              
+    const percentage = (amm) => {setcomplete(clamp(parseInt((DRUNK + amm)/WATHER_LIMIT * 100),0,100));}
+
+
+    // emi
+    const checkGlassAmm = () => {
+        return parseInt(WATHER_LIMIT / WATHER_PER_GLASS);
     }
-    
+
     Feather.loadFont();
 
     
@@ -94,21 +93,23 @@ const Wather = () => {
                 
                 {/*settings */}
                 <Modal 
-                        transparent={true}
-                        animationType="fade"
-                        visible={SET_WATHER_MENU_VISIBLE}
-                        onRequestClose={() => SetSetVisible(false)}
-                    >
-                        <SET
-                            vis={SetSetVisible} // visible checkbox
-                            
+                    transparent={true}
+                    animationType="fade"
+                    visible={SET_WATHER_MENU_VISIBLE}
+                    onRequestClose={() => SetSetVisible(false)}
+                >
+                    <SET
+                        vis={SetSetVisible} // visible checkbox  
 
-                            set_wather_per_glass = {set_WATHER_PER_GLASS}
-                            set_goal = {set_WATHER_LIMIT}
+                        set_wather_per_glass = {set_WATHER_PER_GLASS}
+                        set_goal = {set_WATHER_LIMIT}
 
-                            wather_per_glass = {WATHER_PER_GLASS}
-                            wather_goal = {WATHER_LIMIT}
-                        />
+                        wather_per_glass = {WATHER_PER_GLASS}
+                        wather_goal = {WATHER_LIMIT}
+
+                        // emi
+                        setGlassAmm = {() => checkGlassAmm()}
+                    />
                 </Modal>
                 
 
