@@ -4,8 +4,9 @@ import colors from '../assets/colors/colors';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Feather from 'react-native-vector-icons/FontAwesome';
 import { useFonts } from 'expo-font';
-import Glass from './micro-components/glass'
-import SET from  './settings_wather'
+import Glass from './micro-components/glass';
+import SET from  './settings_wather';
+import {readData,writeData } from './database_controller';
 
 const W = Dimensions.get('window').width;
 const H = Dimensions.get('window').height;
@@ -53,7 +54,7 @@ const Wather = () => {
 
     const [SET_WATHER_MENU_VISIBLE, setvisible] = useState(false);
     const SetSetVisible = (bool) =>{
-        setvisible(bool)
+        setvisible(bool);
     }
 
     //rest
