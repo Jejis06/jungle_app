@@ -24,8 +24,15 @@ const SET = (props) => {
     const[glassSize, setGlassSize] = useState(props.wather_per_glass);
     const modifyGlassSize = (amm) =>{
         setGlassSize(clamp((glassSize + amm), 50,500));
-        props.set_wather_per_glass(clamp((glassSize + amm), 50,500));
+        props.set_wather_per_glass(clamp((glassSize + amm), 50, 500));
     }
+
+    // szary kolor przyciskow
+    const ifButtonPlusGlassSizeLimit = () => {return (glassSize == 500) ? {backgroundColor: 'gray'} : {backgroundColor: 'red'};}
+    const ifButtonMinusGlassSizeLimit = () => {return (glassSize == 50) ? {backgroundColor: 'gray'} : {backgroundColor: 'red'};}
+    const ifButtonPlusGoalLimit = () => {return (goal == 3000) ? {backgroundColor: 'gray'} : {backgroundColor: 'red'};}
+    const ifButtonMinusGoalLimit = () => {return (goal == 50) ? {backgroundColor: 'gray'} : {backgroundColor: 'red'};}
+    
 
     const[goal, setGoal] = useState(props.wather_goal);
 
@@ -42,6 +49,7 @@ const SET = (props) => {
             <View style={styles.modal}>
 
                     <View style={styles.header}>
+                        
                         <BACK Close={Close}/>
                     </View>
 
@@ -51,13 +59,13 @@ const SET = (props) => {
                         <View style={styles.buttons}>
 
                             <TouchableOpacity onPress={() => modifyGlassSize(50)}>
-                                <View style={styles.plus_minus_button}>
+                                <View style={[styles.plus_minus_button, ifButtonPlusGlassSizeLimit()]}>
                                     <Text style={styles.inner_text}> + </Text>
                                 </View>
                             </TouchableOpacity>
                             
                             <TouchableOpacity onPress={() => modifyGlassSize(-50)}>
-                                <View style={styles.plus_minus_button}>
+                                <View style={[styles.plus_minus_button, ifButtonMinusGlassSizeLimit()]}>
                                     <Text style={styles.inner_text}> - </Text>
                                 </View>
                             </TouchableOpacity>
@@ -71,13 +79,13 @@ const SET = (props) => {
                         <View style={styles.buttons}>
 
                             <TouchableOpacity onPress={() => modifyGoal(50)}>
-                                <View style={styles.plus_minus_button}>
+                                <View style={[styles.plus_minus_button, ifButtonPlusGoalLimit()]}>
                                     <Text style={styles.inner_text}> + </Text>
                                 </View>
                             </TouchableOpacity>
                             
                             <TouchableOpacity onPress={() => modifyGoal(-50)}>
-                                <View style={styles.plus_minus_button}>
+                                <View style={[styles.plus_minus_button, ifButtonMinusGoalLimit()]}>
                                     <Text style={styles.inner_text}> - </Text>
                                 </View>
                             </TouchableOpacity>

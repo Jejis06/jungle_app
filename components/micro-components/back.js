@@ -11,17 +11,34 @@ const back = (props) => {
         <TouchableOpacity
             onPress={() => props.Close(false)}
             style={styles.back}>
+                <Text style={styles.backText}>
+                    Cofnij
+                </Text>
         </TouchableOpacity>
     )
 
 }
 const styles = StyleSheet.create({
     back:{
-        width:'33%',
-        height:'100%',
+        width:'25%',
+        height:'70%',
         backgroundColor: '#24A',
-        borderRadius: 34,
-    }
+
+        margin: "2%",
+        
+        borderRadius: 90,
+        
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+    backText:{
+        fontSize: 15,
+        fontWeight: 'bold',
+        color: 'white',
+    },
+
 })
 
 export default back;
