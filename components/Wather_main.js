@@ -1,21 +1,24 @@
 import { StyleSheet, Text, Touchable, TouchableOpacity, View, Modal ,Pressable,Dimensions} from 'react-native';
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import colors from '../assets/colors/colors';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Feather from 'react-native-vector-icons/FontAwesome';
 import { useFonts } from 'expo-font';
 import Glass from './micro-components/glass';
 import SET from  './settings_wather';
-import {readData,writeData } from './database_controller';
+import {readData,writeData,database , templates ,initDATABASE} from './database_controller';
 
 const W = Dimensions.get('window').width;
 const H = Dimensions.get('window').height;
 const GLASS_AMM = 5;
 
+
+
 const Wather = () => {
+    
     const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
-    
-    
+      
+
     const [DRUNK, adddrunk] = useState(0); // ile wypil uzytkowinik
     const [COMPLETE, setcomplete] = useState(0); // ile procent celu osiągnął uzytkownik
     
@@ -30,7 +33,6 @@ const Wather = () => {
 
     const [WATHER_PER_GLASS,setwatherpergl] = useState(250);
      const set_WATHER_PER_GLASS = (amm) => {
-        console.log(amm);
         setwatherpergl(amm);
     }
 
@@ -38,7 +40,8 @@ const Wather = () => {
     const [GLASS_ARR,ARR] = useState(Array(GLASS_AMM).fill('0%')); // ile szklanek
     const add_to_arr = () => {
         for(let i=0;i< GLASS_ARR.length;i++){
-            console.log(parseInt(GLASS_ARR[i].split('%')[0]));
+            //console.log(parseInt(GLASS_ARR[i].split('%')[0]));
+            continue;
         }
     }
     
@@ -65,6 +68,7 @@ const Wather = () => {
         //adddrunk(0);
         percentage(WATHER_PER_GLASS);
         add_to_arr();
+        console.log(readData(database.glass));
     };
     //calculate percentage
     const percentage = (amm) => {
@@ -72,8 +76,15 @@ const Wather = () => {
         
               
     }
-   
+    
     Feather.loadFont();
+
+    
+    useEffect(() => {
+        initDATABASE(database,templates);
+    })
+
+
     return (
         <View style={styles.container} onLoad={() => create_glases()}>
             
