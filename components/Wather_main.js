@@ -274,7 +274,7 @@ const Wather = () => {
 
    
     return (
-        /*<ImageBackground style={styles.container} source={backgroundImage} resizeMode="cover">*/
+        <View style={styles.container}>
             <SafeAreaView style={styles.container}>
                 {/*settings */}
                 <Modal 
@@ -362,7 +362,7 @@ const Wather = () => {
                     <Feather name="cog" size={W/9} color={colors.gray} />
                 </TouchableOpacity>
             </SafeAreaView>      
-        //</ImageBackground>
+        </View>
     )
 };
 
