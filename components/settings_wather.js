@@ -46,26 +46,25 @@ const SET = (props) => {
     return (
         <TouchableOpacity disabled={true} style={styles.container}>
 
-            <View style={styles.modal}>
+            <View style={[styles.modal, styles.shadowStrong]}>
 
                     <View style={styles.header}>
-                        
                         <BACK Close={Close}/>
                     </View>
 
-                    <View style={[styles.content, {paddingBottom: "20%", paddingTop: "5%"}]}>
+                    <View style={[styles.content, {paddingBottom: "20%", paddingTop: "10%"}]}>
                         <Text style={styles.title}>Wielkość szklanki:</Text>
                         <Text style={[styles.title, styles.milliliters]}>{glassSize} ml</Text>
                         <View style={styles.buttons}>
 
                             <TouchableOpacity onPress={() => modifyGlassSize(50)}>
-                                <View style={[styles.plus_minus_button, ifButtonPlusGlassSizeLimit()]}>
+                                <View style={[styles.plus_minus_button, ifButtonPlusGlassSizeLimit(), styles.shadow]}>
                                     <Text style={styles.inner_text}>+</Text>
                                 </View>
                             </TouchableOpacity>
                             
                             <TouchableOpacity onPress={() => modifyGlassSize(-50)}>
-                                <View style={[styles.plus_minus_button, ifButtonMinusGlassSizeLimit()]}>
+                                <View style={[styles.plus_minus_button, ifButtonMinusGlassSizeLimit(), styles.shadow]}>
                                     <Text style={styles.inner_text}>-</Text>
                                 </View>
                             </TouchableOpacity>
@@ -73,19 +72,19 @@ const SET = (props) => {
                         </View>
                     </View>
 
-                    <View style={styles.content}>
+                    <View style={[styles.content, {paddingBottom: "10%"}]}>
                         <Text style={styles.title}>Docelowa ilość wody:</Text>
                         <Text style={[styles.title, styles.milliliters]}>{goal} ml</Text>
                         <View style={styles.buttons}>
 
                             <TouchableOpacity onPress={() => modifyGoal(50)}>
-                                <View style={[styles.plus_minus_button, ifButtonPlusGoalLimit()]}>
+                                <View style={[styles.plus_minus_button, ifButtonPlusGoalLimit(), styles.shadow]}>
                                     <Text style={styles.inner_text}>+</Text>
                                 </View>
                             </TouchableOpacity>
                             
                             <TouchableOpacity onPress={() => modifyGoal(-50)}>
-                                <View style={[styles.plus_minus_button, ifButtonMinusGoalLimit()]}>
+                                <View style={[styles.plus_minus_button, ifButtonMinusGoalLimit(), styles.shadow]}>
                                     <Text style={styles.inner_text}>-</Text>
                                 </View>
                             </TouchableOpacity>
@@ -121,7 +120,9 @@ const styles = StyleSheet.create({
     modal: {
         height:"85%",
         width: "90%",
-        backgroundColor: colors.background,
+        backgroundColor: colors.background2,
+        borderColor: "#e4f3f8",
+        borderWidth: 2,
         borderRadius: 44,
     },
 
@@ -174,27 +175,48 @@ const styles = StyleSheet.create({
         marginHorizontal: 30,
         
         borderRadius: 90,
+    },
+    
+    shadow:{
+        // view shadow
+        shadowColor: "#4196a7",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.22,
+        shadowRadius: 2.22,
 
+        elevation: 3,
+
+        // text shadow
+        textShadowColor: "#4196a7",
+        textShadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        textShadowOpacity: 0.40,
+        textShadowRadius: 3.0,
     },
 
     inner_text:{
         textAlign:'center',
         fontSize: 45,
         color: 'white',
-        fontWeight: 'bold',
+        fontWeight: 'bold',    
+    }, 
+
+    shadowStrong:{
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
         
+        elevation: 5,
     },
-
-    
-
-    opac:{
-        // alignItems: 'space-around',        
-        // justifyContent: 'space-around',
-    }
-
-
-    
-    
 })
 
 export default SET;

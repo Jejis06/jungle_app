@@ -20,7 +20,6 @@ import Animated, {
 
 const W = Dimensions.get('screen').width;
 const H = Dimensions.get('screen').height;
-//const { width } = Dimensions.get("screen");
 
 //woda
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
@@ -31,12 +30,10 @@ const AnimatedSvg = Animated.createAnimatedComponent(Svg);
 const Wather = () => {
     
     const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
-      
 
     const [DRUNK, adddrunk] = useState(0); // ile wypil uzytkowinik
     const set_DRUNK = (amm) => {
         adddrunk(amm);
-        
     }
     
     const [COMPLETE, setcomplete] = useState(0); // ile procent celu osiągnął uzytkownik  
@@ -47,9 +44,7 @@ const Wather = () => {
 
     const [WATHER_LIMIT,setwatherlimit] = useState(2000);
     const set_WATHER_LIMIT = (amm) => {
-        console.log(amm,WATHER_LIMIT);
         setwatherlimit(amm);
-        console.log(amm,WATHER_LIMIT);
     }
 
     
@@ -57,18 +52,10 @@ const Wather = () => {
      const set_WATHER_PER_GLASS = (amm) => {
         setwatherpergl(amm);
     }
-   
 
     const [GLASS_ARR,ARR] = useState(Array(GLASS_AMM).fill('0%')); // ile szklanek
-    const add_to_arr = () => {
-        for(let i=0;i< GLASS_ARR.length;i++){
-            //console.log(parseInt(GLASS_ARR[i].split('%')[0]));
-            continue;
-        }
-    }
-    
-    //modals
 
+    //modals
     const [ADD_WATHER_MENU_VISIBLE, addvisible] = useState(false);
    
     const SetAddVisible = (bool) => {addvisible(bool)}
@@ -84,20 +71,13 @@ const Wather = () => {
         }
         const current = new Date();        
 
-       
-
         await writeData(database.glass,{amm:WATHER_PER_GLASS});
         await writeData(database.limit,{amm:WATHER_LIMIT});
         await writeData(database.drunk,{amm:DRUNK, date:`${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`});
-
     }
 
     //rest
     const add_one_glass = async () => {
-
-        
-
-        
         await set_DRUNK( DRUNK + WATHER_PER_GLASS);
         const current = new Date();
         
@@ -106,12 +86,7 @@ const Wather = () => {
         //add_to_arr();
         await handle_animation(DRUNK + WATHER_PER_GLASS);
 
-
         await writeData(database.drunk,{amm:DRUNK+ WATHER_PER_GLASS, date:`${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`});
-
-       
-       
-        
     };
     
 
@@ -123,17 +98,13 @@ const Wather = () => {
             await percentage(-WATHER_PER_GLASS);
             await handle_animation(DRUNK - WATHER_PER_GLASS)
         }
+
         else{
             await set_DRUNK(0);
             await writeData(database.drunk,{amm:0, date:`${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`});
             await percentage(-DRUNK);
             await handle_animation(0);
         }
-        
-        
-
-        
-        
     };
 
     //animation
@@ -164,14 +135,7 @@ const Wather = () => {
         setcomplete(clamp(parseInt((DRUNK + amm)/WATHER_LIMIT * 100),0,100));
     }
 
-
-    // emi
-    const checkGlassAmm = () => {
-        return parseInt(WATHER_LIMIT / WATHER_PER_GLASS);
-    }
-
     Feather.loadFont();
-
     
     useEffect(() => {
         console.log('useEffect ran');
@@ -256,26 +220,17 @@ const Wather = () => {
                 easing: Easing.ease,
                 });
             }
-                
-            
-            
-
         }
-        data();
-        
-        
 
-
+        data();      
     },[]);
-    const backgroundImage = require('../assets/jungla.jpg');
-    //ANIMACJE
 
+    // const backgroundImage = require('../assets/jungla.jpg');
+
+    //ANIMACJE
     const heighAnimated = useSharedValue(100);
     const waveAnimated = useSharedValue(5);
     const buttonStrokeAnimated = useSharedValue(0);
-    
-    
-
     const firstWaveProps = useAnimatedProps(() => {
         return {
         d: `
@@ -319,11 +274,8 @@ const Wather = () => {
 
    
     return (
-        <ImageBackground style={styles.container} source={backgroundImage} resizeMode="cover">
+        /*<ImageBackground style={styles.container} source={backgroundImage} resizeMode="cover">*/
             <SafeAreaView style={styles.container}>
-                {/* Popup windows */}
-                {/*wather glass */}
-            
                 {/*settings */}
                 <Modal 
                     transparent={true}
@@ -343,20 +295,13 @@ const Wather = () => {
                         // emi
                         setGlassAmm = {() => checkGlassAmm()}
                     />
-                </Modal>
-                
+                </Modal>               
 
-
-                {/* setting bar */}
-                 
-
-                
+                {/* setting bar */}               
 
                 {/* info */}
-
                 <View style={styles.ammount_container}>
                     <Text style={styles.ammount_text}>{DRUNK} ml</Text>
-
                     {/* 
 
                     <View style={styles.glasses}>
@@ -368,14 +313,10 @@ const Wather = () => {
         
                     </View>
                     
-                    */}
-                    
+                    */}                    
                 </View>
 
-                {/* flow */}
-
-                
-
+                {/* flow */}               
                 <View style={styles.level_wrapper}>
                     {/*<View style={[styles.wather_level,{height: `${COMPLETE-10}%`}]}></View>*/}
                     <AnimatedSvg position={"absolute"} bottom={0} width={W} animatedProps={SVGProps}>
@@ -394,14 +335,14 @@ const Wather = () => {
 
                     <View style={[styles.spheres]}>
                     <TouchableOpacity  
-                            style={styles.addWathersphere}
+                            style={[styles.addWathersphere, styles.shadow]}
                             onPress={() => dec_one_glass()}
                         >
                             <Text style={styles.addtxt}>-</Text>
                             
                         </TouchableOpacity>
                     <TouchableOpacity  
-                            style={styles.addWathersphere}
+                            style={[styles.addWathersphere, styles.shadow]}
                             onPress={() => add_one_glass()}
                         >
                             <Text style={styles.addtxt}>+</Text>
@@ -413,7 +354,7 @@ const Wather = () => {
                     
                 </View>
 
-                <Text style={styles.percentage_text}>{COMPLETE}%</Text>
+                <Text style={[styles.percentage_text, styles.shadow]}>{COMPLETE}%</Text>
                 <TouchableOpacity  
                     style={styles.headerWrapper}
                     onPress={() => SetSetVisible(true)}
@@ -421,7 +362,7 @@ const Wather = () => {
                     <Feather name="cog" size={W/9} color={colors.gray} />
                 </TouchableOpacity>
             </SafeAreaView>      
-        </ImageBackground>
+        //</ImageBackground>
     )
 };
 
@@ -429,9 +370,9 @@ const styles = StyleSheet.create({
     
     container:{
         flex: 1,
-        //backgroundColor:colors.background,
-        
+        backgroundColor:colors.background,
     },
+
     headerWrapper: {
         flexDirection: 'row-reverse',
         justifyContent: 'space-between',
@@ -447,6 +388,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop:102,
     },
+
     ammount_text:{
        
         fontFamily: "Hreg",
@@ -461,8 +403,7 @@ const styles = StyleSheet.create({
         alignItems:'center',
         
     },
-   
-   //update
+
     percentage_text:{
         position:'absolute',
         top:'30%',
@@ -487,6 +428,7 @@ const styles = StyleSheet.create({
         backgroundColor:colors.lightGray,
         justifyContent:'center',
         marginHorizontal:50,
+
     },
     spheres:{
         marginVertical:100,
@@ -501,7 +443,29 @@ const styles = StyleSheet.create({
         color:colors.foregroundGRAY,
         fontSize:60,
         fontFamily: "Hreg",
-    }
+    },
+
+    shadow:{
+        // view shadow
+        shadowColor: "#4196a7",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.22,
+        shadowRadius: 2.22,
+
+        elevation: 3,
+
+        // text shadow
+        textShadowColor: "#4196a7",
+        textShadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        textShadowOpacity: 0.40,
+        textShadowRadius: 3.0,
+    },
 })
 
 
