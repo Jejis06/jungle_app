@@ -4,6 +4,7 @@ import {
     StyleSheet,Text,View,
     TouchableOpacity, Dimensions
 } from "react-native";
+import { withSafeAreaInsets } from "react-native-safe-area-context";
 
 
 
@@ -13,7 +14,7 @@ const back = (props) => {
             onPress={() => props.Close(false)}
             style={styles.back}>
                 <Text style={styles.backText}>
-                    Cofnij
+                    {'>'}
                 </Text>
         </TouchableOpacity>
     )
@@ -21,23 +22,27 @@ const back = (props) => {
 }
 const styles = StyleSheet.create({
     back:{
-        width:'25%',
-        height:'70%',
-        backgroundColor: colors.Secondary,
+        // width:'25%',
+        // height:'70%',
+        // backgroundColor: colors.Secondary,
 
-        margin: "2%",
+        // margin: "2%",
+        marginRight: "5%",
         
         borderRadius: 90,
         
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+
+        
     },
 
     backText:{
-        fontSize: 15,
+        // fontSize: 15,
+        fontSize: 30,
         fontWeight: 'bold',
-        color: 'white',
+        color: colors.Secondary,
     },
 
 })

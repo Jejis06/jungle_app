@@ -1,16 +1,11 @@
 {
   "expo": {
-    "name": "woda",
-    "slug": "woda",
+    "name": "Jungle App",
+    "slug": "JungleApp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/playstore-icon.png",
     "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash_screen.jpg",
-      "resizeMode": "contain",
-      "backgroundColor": "#88C1D4"
-    },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -21,6 +16,8 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.project.jungle",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
@@ -28,6 +25,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "1c92c199-9fbb-44e4-b37a-ab1b0f204d7b"
+      }
     }
   }
 }
