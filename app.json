@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "jungleApp",
-    "slug": "jungle",
+    "name": "Jungle App",
+    "slug": "JungleApp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/playstore-icon.png",
@@ -16,20 +16,19 @@
       "supportsTablet": true
     },
     "android": {
-      "package":"com.project.jungle",
-      "versionCode":1,
+      "package": "com.project.jungle",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      },
-      "package": "com.jejis06.jungle"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "8464894a-c447-4a63-9ff0-1646071f0772"
+        "projectId": "1c92c199-9fbb-44e4-b37a-ab1b0f204d7b"
       }
     }
   }
