@@ -1,13 +1,14 @@
-import { StyleSheet, Text, View } from 'react-native';
+import {ImageBackground, StyleSheet, Text, View } from 'react-native';
 import * as React from 'react';
 import colors from '../../assets/colors/colors';
 
 
 const Glass = (prop) => {
+    const backgroundImage = require('../../assets/szklanka4.png');
     return (
-        <View style={styles.glass_inactive}>
+        <ImageBackground style={styles.glass_inactive} source={backgroundImage} resizeMode="cover">
             <View style={styles.glass_active} height = {prop.level}></View>
-        </View>
+        </ImageBackground>
     )
 };
 
@@ -18,12 +19,12 @@ const styles = StyleSheet.create({
         bottom:0,
         width:'100%',
         height:'0%',
-        backgroundColor:colors.Thirdary,
+        //backgroundColor:colors.Thirdary,
     },
     glass_inactive:{
         width:26,
         height:44,
-        backgroundColor:colors.lightGray,
+        //backgroundColor:colors.lightGray,
         marginHorizontal:9,
 
     },

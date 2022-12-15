@@ -19,26 +19,26 @@ const SET = (props) => {
     const Close = (bool) => {
         props.vis(bool);
     }
-    
+    const ON_COLOR = colors.Secondary;
 
     const[glassSize, setGlassSize] = useState(props.wather_per_glass);
     const modifyGlassSize = (amm) =>{
         setGlassSize(clamp((glassSize + amm), 50,500));
         props.set_wather_per_glass(clamp((glassSize + amm), 50, 500));
-    }
+    }//I waaanaa dieeeee
 
     // szary kolor przyciskow
-    const ifButtonPlusGlassSizeLimit = () => {return (glassSize == 500) ? {backgroundColor: 'gray'} : {backgroundColor: 'red'};}
-    const ifButtonMinusGlassSizeLimit = () => {return (glassSize == 50) ? {backgroundColor: 'gray'} : {backgroundColor: 'red'};}
-    const ifButtonPlusGoalLimit = () => {return (goal == 3000) ? {backgroundColor: 'gray'} : {backgroundColor: 'red'};}
-    const ifButtonMinusGoalLimit = () => {return (goal == 50) ? {backgroundColor: 'gray'} : {backgroundColor: 'red'};}
+    const ifButtonPlusGlassSizeLimit = () => {return (glassSize == 500) ? {backgroundColor: colors.Thirdary} : {backgroundColor: colors.lightGray};}
+    const ifButtonMinusGlassSizeLimit = () => {return (glassSize == 50) ? {backgroundColor:colors.Thirdary} : {backgroundColor: colors.lightGray};}
+    const ifButtonPlusGoalLimit = () => {return (goal == 10000) ? {backgroundColor: colors.Thirdary} : {backgroundColor: colors.lightGray};}
+    const ifButtonMinusGoalLimit = () => {return (goal == 50) ? {backgroundColor: colors.Thirdary} : {backgroundColor: colors.lightGray};}
     
 
     const[goal, setGoal] = useState(props.wather_goal);
 
     const modifyGoal = (amm) =>{
-        setGoal(clamp(goal + amm, 50,3000));        
-        props.set_goal(clamp(goal + amm, 50,3000));
+        setGoal(clamp(goal + amm, 50,10000));        
+        props.set_goal(clamp(goal + amm, 50,10000));
     }
 
     
@@ -60,13 +60,13 @@ const SET = (props) => {
 
                             <TouchableOpacity onPress={() => modifyGlassSize(50)}>
                                 <View style={[styles.plus_minus_button, ifButtonPlusGlassSizeLimit()]}>
-                                    <Text style={styles.inner_text}> + </Text>
+                                    <Text style={styles.inner_text}>+</Text>
                                 </View>
                             </TouchableOpacity>
                             
                             <TouchableOpacity onPress={() => modifyGlassSize(-50)}>
                                 <View style={[styles.plus_minus_button, ifButtonMinusGlassSizeLimit()]}>
-                                    <Text style={styles.inner_text}> - </Text>
+                                    <Text style={styles.inner_text}>-</Text>
                                 </View>
                             </TouchableOpacity>
 
@@ -80,13 +80,13 @@ const SET = (props) => {
 
                             <TouchableOpacity onPress={() => modifyGoal(50)}>
                                 <View style={[styles.plus_minus_button, ifButtonPlusGoalLimit()]}>
-                                    <Text style={styles.inner_text}> + </Text>
+                                    <Text style={styles.inner_text}>+</Text>
                                 </View>
                             </TouchableOpacity>
                             
                             <TouchableOpacity onPress={() => modifyGoal(-50)}>
                                 <View style={[styles.plus_minus_button, ifButtonMinusGoalLimit()]}>
-                                    <Text style={styles.inner_text}> - </Text>
+                                    <Text style={styles.inner_text}>-</Text>
                                 </View>
                             </TouchableOpacity>
                             
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     modal: {
         height:"85%",
         width: "90%",
-        backgroundColor: '#FFFF',
+        backgroundColor: colors.background,
         borderRadius: 44,
     },
 
@@ -130,11 +130,12 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',        
         justifyContent: 'space-around',
+        //marginTop:30,
     },    
 
     title:{
-        color: 'black',
-        letterSpacing: 2,
+        color: colors.foregroundGRAY,
+        letterSpacing: 1,
         fontSize:30,
         textAlign:'center',
         fontWeight:'bold',
@@ -143,37 +144,41 @@ const styles = StyleSheet.create({
 
     milliliters:{
         fontSize: 35,
-        color: colors.Primary,
+        color: colors.lightGray,
         letterSpacing:4,
     },
 
     buttons:{
         flexDirection: 'row',
-        width: "100%",
-
-        //backgroundColor: 'red',
+       
+        flex: 1,
 
         alignItems: 'space-around',        
-        justifyContent: 'space-around',        
+        justifyContent: 'space-around', 
+        marginBottom: 50,       
     },
 
     plus_minus_button:{
-        //height:"10%",
-        // width:"10%",
-
+       
         // flexDirection: 'column',
         // flex: 0.1,
 
-        // justifyContent: 'center',
-        // alignContent: 'center',
+        justifyContent: 'center',
+        alignContent: 'center',
+        width: W_MOD/4,
+        height:  W_MOD/4,
 
-        backgroundColor: colors.Primary,
+        backgroundColor: colors.lightGray,
 
-        padding: "3%",
-        borderRadius: 100,
+        //padding: "3%",
+        marginHorizontal: 30,
+        
+        borderRadius: 90,
+
     },
 
     inner_text:{
+        textAlign:'center',
         fontSize: 45,
         color: 'white',
         fontWeight: 'bold',

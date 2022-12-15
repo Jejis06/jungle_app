@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import colors from "../../assets/colors/colors";
 import {
     StyleSheet,Text,View,
     TouchableOpacity, Dimensions
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
     back:{
         width:'25%',
         height:'70%',
-        backgroundColor: '#24A',
+        backgroundColor: colors.Secondary,
 
         margin: "2%",
         
