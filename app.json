@@ -4,10 +4,10 @@
     "slug": "jungle",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/playstore-icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash_screen.jpg",
+      "image": "./assets/splash_screen.png",
       "resizeMode": "contain",
       "backgroundColor": "#88C1D4"
     },
@@ -21,13 +21,21 @@
       "supportsTablet": true
     },
     "android": {
+      "package":"com.project.jungle",
+      "versionCode":1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.jejis06.jungle"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "8464894a-c447-4a63-9ff0-1646071f0772"
+      }
     }
   }
 }
