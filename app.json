@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "woda",
-    "slug": "woda",
+    "name": "jungleApp",
+    "slug": "jungle",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
