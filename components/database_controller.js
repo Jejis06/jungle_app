@@ -6,24 +6,24 @@ const database = {
     drunk:"DRUN",
 }
 const templates = {
-    glass:{"amm":250},
-    limit:{"amm":2000},
-    drunk:{"amm":0},
+    glass:{amm:250},
+    limit:{amm:2000},
+    drunk:{amm:0, date:""},
 }
 
 
 /* ALL CODE NEEDED FOR SAVING DATA TO PHONES STORAGE */
 
-const initDATABASE = (dbase,templ) => {
-    for (var key in dbase){
-        
-        if(readData(dbase[key])._z === null){
-           
-            writeData(dbase[key],templ[key]);
-            
-        }
-    }
-};
+const clear = async () => {
+    try {
+        await AsyncStorage.clear();
+
+      } catch (error) {
+        console.log(error);
+        return {"err":1}
+      }
+    
+}
 
 const writeData = async (key,data) => {
     try {
@@ -52,4 +52,4 @@ const readData = async (key) => {
 
 
 
-export  {writeData, readData, database,templates, initDATABASE};
+export  {writeData, readData, database,templates,clear};
