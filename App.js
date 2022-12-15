@@ -9,6 +9,7 @@ import * as SplashScreen from 'expo-splash-screen';
 
 import Wather from './components/Wather_main';
 
+import colors from './assets/colors/colors';
 const Stack = createNativeStackNavigator();
 
 
@@ -27,9 +28,9 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen 
+    <NavigationContainer backgroundColor={colors.background}>
+      <Stack.Navigator backgroundColor={colors.background}>
+        <Stack.Screen backgroundColor={colors.background}
         name="Wather-main" 
         component={Wather} 
         options={{
