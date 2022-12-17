@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "Jungle App",
+    "name": "Jungle Water Tracker",
     "slug": "JungleApp",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "orientation": "portrait",
     "icon": "./assets/playstore-icon.png",
     "userInterfaceStyle": "light",
@@ -28,7 +28,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "1c92c199-9fbb-44e4-b37a-ab1b0f204d7b"
+        "projectId": "dea45297-e9d4-45e8-acae-3960c6d9e83f"
       }
     }
   }
