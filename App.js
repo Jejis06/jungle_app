@@ -1,4 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
+import { registerRootComponent } from 'expo';
 import { StyleSheet, Text, View } from 'react-native';
 //import * as React from 'react';
 import React,{useState} from 'react';
@@ -14,7 +15,7 @@ const Stack = createNativeStackNavigator();
 
 
 
-export default function App() {
+function App() {
    //fonts
    
   
@@ -44,6 +45,10 @@ export default function App() {
 //siemanko
 //hasdhkjsadhjaksh
 
+
 const styles = StyleSheet.create({
   
 });
+
+export default registerRootComponent(App);
+

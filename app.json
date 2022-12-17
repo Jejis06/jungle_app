@@ -9,6 +9,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
+    "entryPoint": "./App.js",
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -27,9 +28,6 @@
       "favicon": "./assets/favicon.png"
     },
     "extra": {
-      "eas": {
-        "projectId": "1c92c199-9fbb-44e4-b37a-ab1b0f204d7b"
-      }
     }
   }
 }

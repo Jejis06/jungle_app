@@ -30,15 +30,15 @@ const SET = (props) => {
     // szary kolor przyciskow
     const ifButtonPlusGlassSizeLimit = () => {return (glassSize == 500) ? {backgroundColor: colors.Thirdary} : {backgroundColor: colors.lightGray};}
     const ifButtonMinusGlassSizeLimit = () => {return (glassSize == 50) ? {backgroundColor:colors.Thirdary} : {backgroundColor: colors.lightGray};}
-    const ifButtonPlusGoalLimit = () => {return (goal == 10000) ? {backgroundColor: colors.Thirdary} : {backgroundColor: colors.lightGray};}
-    const ifButtonMinusGoalLimit = () => {return (goal == 50) ? {backgroundColor: colors.Thirdary} : {backgroundColor: colors.lightGray};}
+    const ifButtonPlusGoalLimit = () => {return (goal == 3000) ? {backgroundColor: colors.Thirdary} : {backgroundColor: colors.lightGray};}
+    const ifButtonMinusGoalLimit = () => {return (goal == 1000) ? {backgroundColor: colors.Thirdary} : {backgroundColor: colors.lightGray};}
     
 
     const[goal, setGoal] = useState(props.wather_goal);
 
     const modifyGoal = (amm) =>{
-        setGoal(clamp(goal + amm, 50,10000));        
-        props.set_goal(clamp(goal + amm, 50,10000));
+        setGoal(clamp(goal + amm, 1000,3000));        
+        props.set_goal(clamp(goal + amm, 1000,3000));
     }
 
     
