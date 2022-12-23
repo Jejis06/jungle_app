@@ -19,7 +19,7 @@
       "package": "com.project.jungle",
       "versionCode": 1,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/playstore-icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
